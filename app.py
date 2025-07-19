@@ -28,7 +28,7 @@ Iph = Iph_base * (irradiance / 1000)
 I = Iph - I0 * (np.exp(V / Vt) - 1)
 I = np.clip(I, 0, None)  # Clip negative currents
 
-# Plotting
+# Plotting graph
 fig, ax = plt.subplots()
 ax.plot(V, I, color='blue', label=f'{irradiance} W/m²')
 ax.set_title("IV Curve")
