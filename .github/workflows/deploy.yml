@@ -24,5 +24,8 @@ jobs:
       - name: Push to Heroku
         run: docker push registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web
 
+      - name: Log in to Heroku CLI
+        run: echo "machine api.heroku.com\n  login _\n  password ${{ secrets.HEROKU_API_KEY }}\nmachine git.heroku.com\n  login _\n  password ${{ secrets.HEROKU_API_KEY }}" > ~/.netrc
+
       - name: Release App
         run: heroku container:release web --app ${{ secrets.HEROKU_APP_NAME }}
