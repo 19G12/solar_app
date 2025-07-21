@@ -11,13 +11,12 @@ st.markdown(
 irradiance = st.slider("Select Irradiance (W/m²)",
                        min_value=100, max_value=1000, step=100, value=1000)
 
-# st.markdown(
-#     "Adjust the temperature using the slider below to see changes in graph °C"
-# )
-# temperature = st.slider("Select the temperature (°C)",
-#                         min_value=-10, max_value=100, step=5, value=25
-#                         ) # Add atemperature slider
-temperature = 25
+st.markdown(
+    "Adjust the temperature using the slider below to see changes in graph °C"
+)
+temperature = st.slider("Select the temperature (°C)",
+                        min_value=-10, max_value=100, step=5, value=25
+                        )  # Add atemperature slider
 
 q = 1.602e-19
 k = 1.381e-23
