@@ -1,7 +1,10 @@
-name: Build and Deploy to Heroku
+name: Build and Deploy Dev App to Heroku
 
 on:
   push:
+    paths:
+      - 'dev_apps/**'
+      - '.github/workflows/deploy-dev.yml'
     branches: [ main ]
 
 jobs:
@@ -27,11 +30,11 @@ jobs:
       - name: Log in to Heroku Container Registry
         run: echo "${{ secrets.HEROKU_API_KEY }}" | docker login --username=_ --password-stdin registry.heroku.com
 
-      - name: Build Docker image
-        run: docker build -t registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web .
+      - name: Build Docker image for dev app
+        run: docker build -t registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web ./dev_apps
 
-      - name: Push to Heroku
+      - name: Push to Heroku (dev app)
         run: docker push registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web
 
-      - name: Release App
+      - name: Release Dev App
         run: heroku container:release web --app ${{ secrets.HEROKU_APP_NAME }}
